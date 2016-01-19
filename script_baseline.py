@@ -116,34 +116,21 @@ def surrogate_generate_LR(training_independent, training_dependent):
     return linear_regression_model
 
 
-def surrogate_POMX(training_independent, training_dependent):
+
+def surrogate_generate_test1(training_independent, training_dependent):
     from sklearn import linear_model
     number_of_objectives = len(training_dependent[0])
     linear_regression_model = [None for _ in xrange(number_of_objectives)]
-    for objective in [0, 2]:
+    for objective in [0, 2, 3]:
         linear_regression_model[objective] = linear_model.LinearRegression()
         linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
 
     from sklearn.tree import DecisionTreeRegressor
-    for objective in [1]:
+    for objective in xrange(number_of_objectives):
         linear_regression_model[objective] = DecisionTreeRegressor()
         linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
     return linear_regression_model
 
-
-def surrogate_FeatureM(training_independent, training_dependent):
-    from sklearn import linear_model
-    number_of_objectives = len(training_dependent[0])
-    linear_regression_model = [None for _ in xrange(number_of_objectives)]
-    for objective in [0, 2]:
-        linear_regression_model[objective] = linear_model.LinearRegression()
-        linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
-
-    from sklearn.tree import DecisionTreeRegressor
-    for objective in [1]:
-        linear_regression_model[objective] = DecisionTreeRegressor()
-        linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
-    return linear_regression_model
 
 
 def get_testing_data(training_independent, filename):
@@ -193,42 +180,59 @@ def validate_data(surrogate, testing_independent, testing_dependent):
                 # mre.append(abs(i - j))
         results.append(round(sum(mre)/len(mre), 2))
 
-    return [round(result*100, 2) for result in results]
+    print "Validate Data: ", [round(result*100, 2) for result in results],
 
 
-def get_filenames(policy):
-    repeats = 10
+def get_filenames(policy, function=surrogate_generate_test1):
     basename = "./Data/"
     from os import listdir
     file_names = [basename + fname for fname in listdir(basename)]
-    functions = [surrogate_generate, surrogate_generate_LR, surrogate_FeatureM]#, surrogate_POMX]
 
     for file_name in file_names:
+
+        clusters = WHEREDataTransformation(file_name)
+        training_independent, training_dependent = policy(clusters, file_name)
+        testing_independent, testing_dependent = get_testing_data(training_independent, file_name)
+        baseline_training_data, baseline_testing_data = get_baseline(file_name)
+
+        # split into independent and dependent
+        objectives = len(training_dependent[0])
+        baseline_training_independent = [indi[:-1*objectives] for indi in baseline_training_data]
+        baseline_training_dependent = [indi[-1*objectives:] for indi in baseline_training_data]
+
+        baseline_testing_independent = [indi[:-1*objectives] for indi in baseline_testing_data]
+        baseline_testing_dependent = [indi[-1*objectives:] for indi in baseline_testing_data]
+
+        assert(len(testing_dependent) == len(testing_independent)), "Something is wrong"
+
         print
-        for function in functions:
-            temp_storage = []
-            print file_name,
-            for repeat in xrange(repeats):
-                clusters = WHEREDataTransformation(file_name)
-                training_independent, training_dependent = policy(clusters, file_name)
-                testing_independent, testing_dependent = get_testing_data(training_independent, file_name)
+        print file_name, function.__name__
+        # surogates = surrogate_generate(training_independent, training_dependent)
+        # surogates_baseline = surrogate_generate(baseline_training_independent, baseline_training_dependent)
 
-                assert(len(testing_dependent) == len(testing_independent)), "Something is wrong"
+        # surogates = surrogate_generate_FM(training_independent, training_dependent)
 
+        surogates = function(training_independent, training_dependent)
+        surogates_baseline = function(baseline_training_independent, baseline_training_dependent)
 
-                surogates = function(training_independent, training_dependent)
-
-                temp_storage.append(validate_data(surogates, testing_independent, testing_dependent))
-
-            # finding mean
-            from numpy import mean
-            final_answer = []
-            number_of_objectives = len(temp_storage[0])
-            for o in xrange(number_of_objectives):
-                final_answer.append(round(mean([ts[o] for ts in temp_storage]), 3))
-            print function.__name__ , "\t\t\t : ", final_answer
+        validate_data(surogates, baseline_testing_independent, baseline_testing_dependent)
+        print len(training_independent)
+        print "Baseline"
+        validate_data(surogates_baseline, baseline_testing_independent, baseline_testing_dependent)
+        print len(baseline_training_independent)
 
 
+def get_baseline(filename, percentage=50):
+    import pandas as pd
+    all_data = pd.read_csv(filename).values.tolist()
+    index = [i for i in xrange(len(all_data))]
+    from random import shuffle
+    shuffle(index)
+    boundary = int(percentage * len(all_data)/100)
+    training_data = [all_data[i] for i in index[:boundary]]
+    testing_data = [all_data[i] for i in index[boundary:]]
+
+    return training_data, testing_data
 
 
 

@@ -1,12 +1,16 @@
 from __future__ import division
 from Problems.Feature_Models.feature_model import FeatureTreeModel
+from Problems.POM3.POM3A import POM3A
+from Problems.POM3.POM3B import POM3B
+from Problems.POM3.POM3C import POM3C
+from Problems.POM3.POM3D import POM3D
 from Utilities.to_generate_data import generate_data
 
 
 def clean_up():
     folder_name = "./Data/"
     from os import system
-    system("rm -rf " + folder_name)
+    system("rm -rf " + folder_name + "*")
 
 problems = [
     # FeatureTreeModel("Web_Portal", valid_solutions=True),
@@ -16,10 +20,12 @@ problems = [
     FeatureTreeModel("Web_Portal"),
     FeatureTreeModel("eshop"),
     FeatureTreeModel("cellphone"),
-    FeatureTreeModel("EIS")
+    FeatureTreeModel("EIS"),
+    # POM3A(),POM3B(), POM3C(), POM3D()
+
 ]
 
-number_of_samples = 100
+number_of_samples = 1000
 
 for problem in problems:
     print
@@ -30,7 +36,9 @@ for problem in problems:
     f = open(filename, "w")
     f.write(header + "\n")
     for decision in decisions:
+        import sys
         print ".",
+        sys.stdout.flush()
         line = ""
         objectives = [round(i, 3) for i in problem.evaluate(decision)]
         line += ",".join(map(str, decision))

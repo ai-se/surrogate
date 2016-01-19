@@ -119,9 +119,10 @@ class pom3:
         
         
         
-        # return [cost, score, completion, idle]
-        return [cost, 1-score, idle]
-        
+        return [cost, score, completion, idle]
+        # return [cost, 1-score, idle]
+        # return [cost, 1-score, completion]
+
         
 
 # Test Code 

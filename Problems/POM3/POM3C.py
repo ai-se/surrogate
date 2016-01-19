@@ -1,5 +1,5 @@
-from jmoo_decision import *
-from jmoo_problem import jmoo_problem
+from Dependencies.jmoo_decision import *
+from Dependencies.jmoo_problem import jmoo_problem
 
 from Dependencies.jmoo_objective import *
 from Helper.pom3 import pom3
@@ -9,6 +9,7 @@ class POM3C(jmoo_problem):
     "POM3C"
 
     def __init__(prob):
+        super(POM3C, prob).__init__()
         prob.name = "POM3C"
         names = ["Culture", "Criticality", "Criticality Modifier", "Initial Known", "Inter-Dependency", "Dynamism",
                  "Size", "Plan", "Team Size"]
@@ -18,7 +19,7 @@ class POM3C(jmoo_problem):
         # prob.objectives = [jmoo_objective("Cost", True, 0), jmoo_objective("Score", False, 0, 1),
         #                    jmoo_objective("Completion", False, 0, 1)]#, jmoo_objective("Idle", True, 0, 1)]
         prob.objectives = [jmoo_objective("Cost", True, 0), jmoo_objective("Score", True, 0, 1),
-                           # jmoo_objective("Completion", False, 0, 1)]
+                           jmoo_objective("Completion", False, 0, 1),
                           jmoo_objective("Idle", True, 0, 1)]
 
     def evaluate(prob, input=None):
