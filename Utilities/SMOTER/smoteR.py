@@ -41,10 +41,11 @@ def apply_over_sampling(candidates, number_of_points):
             new_indep[index] = case.independent[index] + random() * diff
 
         # For dependent Variables
-        d1 = euclidean_distance(new_indep, case.independent)
-        d2 = euclidean_distance(new_indep, x.independent)
+        # d1 = euclidean_distance(new_indep, case.independent)
+        # d2 = euclidean_distance(new_indep, x.independent)
+        # new_dep = (d2 * case.dependent + d1 * x.dependent) / (d1 + d2)
 
-        new_dep = (d2 * case.dependent + d1 * x.dependent) / (d1 + d2)
+
         new_samples.append(Candidate(new_indep, new_dep, case.class_name))
 
     return new_samples
@@ -60,10 +61,6 @@ def apply_smote(list_of_indep, list_of_dep):
     # Assigning class names
     min_value = min(list_of_dep)
     max_value = max(list_of_dep)
-
-    t_dist = [0 for _ in xrange(10)]
-    for c in Candidates:
-        t_dist[int(class_names(c.dependent, min_value, max_value)) - 1] += 1
 
 
     candidate_dict = {}
@@ -90,10 +87,6 @@ def apply_smote(list_of_indep, list_of_dep):
     for key in list(set(candidate_dict.keys()) - set(rare_classes)):
         new_samples.extend(candidate_dict[key])
 
-
-    t_dist = [0 for _ in xrange(10)]
-    for c in new_samples:
-        t_dist[int(class_names(c.dependent, min_value, max_value)) - 1] += 1
 
     return [x.independent for x in new_samples], [x.dependent for x in new_samples]
 

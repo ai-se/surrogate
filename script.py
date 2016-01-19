@@ -175,18 +175,30 @@ def surrogate_POMX(training_independent, training_dependent, SMOTE=False):
     return linear_regression_model
 
 
-def surrogate_FeatureM(training_independent, training_dependent):
+def surrogate_FeatureM(training_independent, training_dependent, SMOTE=True):
     from sklearn import linear_model
     number_of_objectives = len(training_dependent[0])
     linear_regression_model = [None for _ in xrange(number_of_objectives)]
     for objective in [0, 2]:
         linear_regression_model[objective] = linear_model.LinearRegression()
-        linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
+        if SMOTE is True:
+            from Utilities.SMOTER.smoteR import apply_smote
+            dependent = [td[objective] for td in training_dependent]
+            smote_indep_training, smote_dep_testing = apply_smote(training_independent, dependent)
+            linear_regression_model[objective].fit(smote_indep_training, smote_dep_testing)
+        else:
+            linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
 
     from sklearn.tree import DecisionTreeRegressor
     for objective in [1]:
         linear_regression_model[objective] = DecisionTreeRegressor()
-        linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
+        if SMOTE is True:
+            from Utilities.SMOTER.smoteR import apply_smote
+            dependent = [td[objective] for td in training_dependent]
+            smote_indep_training, smote_dep_testing = apply_smote(training_independent, dependent)
+            linear_regression_model[objective].fit(smote_indep_training, smote_dep_testing)
+        else:
+            linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
     return linear_regression_model
 
 
@@ -245,7 +257,7 @@ def get_filenames(policy):
     basename = "./Data/"
     from os import listdir
     file_names = [basename + fname for fname in listdir(basename)]
-    functions = [surrogate_POMX, surrogate_generate, surrogate_generate_LR]
+    functions = [surrogate_FeatureM, surrogate_generate, surrogate_generate_LR]
                  # surrogate_FeatureM]#, surrogate_POMX]
 
     SMOTE = True
