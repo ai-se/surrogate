@@ -17,11 +17,11 @@ problems = [
     # FeatureTreeModel("eshop", valid_solutions=True),
     # FeatureTreeModel("cellphone", valid_solutions=True),
     # FeatureTreeModel("EIS", valid_solutions=True),
-    FeatureTreeModel("Web_Portal"),
-    FeatureTreeModel("eshop"),
-    FeatureTreeModel("cellphone"),
-    FeatureTreeModel("EIS"),
-    # POM3A(),POM3B(), POM3C(), POM3D()
+    # FeatureTreeModel("Web_Portal"),
+    # FeatureTreeModel("eshop"),
+    # FeatureTreeModel("cellphone"),
+    # FeatureTreeModel("EIS"),
+    POM3A(),POM3B(), POM3C(), POM3D()
 
 ]
 

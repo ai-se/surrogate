@@ -62,14 +62,37 @@ def random_point(clusters, filename):
     return [fd[:decisions] for fd in full_data], [fd[decisions:] for fd in full_data]
 
 
-def surrogate_generate(training_independent, training_dependent):
+def surrogate_generate_with_SMOTE(training_independent, training_dependent, bins = 10):
+
+    from Utilities.SMOTER.smoteR import apply_smote
+    from sklearn.tree import DecisionTreeRegressor
+
+    number_of_objectives = len(training_dependent[0])
+    cart_trees = []
+    for objective in xrange(number_of_objectives):
+        dependent = [td[objective] for td in training_dependent]
+        smote_indep_training, smote_dep_testing = apply_smote(training_independent, dependent)
+
+        cart_trees.append(DecisionTreeRegressor())
+        cart_trees[objective].fit(smote_indep_training, smote_dep_testing)
+    return cart_trees
+
+
+def surrogate_generate(training_independent, training_dependent, SMOTE=False):
     #""" decision tree
     from sklearn.tree import DecisionTreeRegressor
     number_of_objectives = len(training_dependent[0])
     cart_trees = []
+
     for objective in xrange(number_of_objectives):
         cart_trees.append(DecisionTreeRegressor())
-        cart_trees[objective].fit(training_independent, [td[objective] for td in training_dependent])
+        if SMOTE is True:
+            from Utilities.SMOTER.smoteR import apply_smote
+            dependent = [td[objective] for td in training_dependent]
+            smote_indep_training, smote_dep_testing = apply_smote(training_independent, dependent)
+            cart_trees[objective].fit(smote_indep_training, smote_dep_testing)
+        else:
+            cart_trees[objective].fit(training_independent, [td[objective] for td in training_dependent])
     return cart_trees
 
     # svm
@@ -106,28 +129,49 @@ def surrogate_generate_FM(training_independent, training_dependent):
     return cart_trees
 
 
-def surrogate_generate_LR(training_independent, training_dependent):
+def surrogate_generate_LR(training_independent, training_dependent, SMOTE=False):
     from sklearn import linear_model
     number_of_objectives = len(training_dependent[0])
     linear_regression_model = []
+
     for objective in xrange(number_of_objectives):
         linear_regression_model.append(linear_model.LinearRegression())
-        linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
+        if SMOTE is True:
+            from Utilities.SMOTER.smoteR import apply_smote
+            dependent = [td[objective] for td in training_dependent]
+            smote_indep_training, smote_dep_testing = apply_smote(training_independent, dependent)
+            linear_regression_model[objective].fit(smote_indep_training, smote_dep_testing)
+        else:
+            linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
     return linear_regression_model
 
 
-def surrogate_POMX(training_independent, training_dependent):
+def surrogate_POMX(training_independent, training_dependent, SMOTE=False):
     from sklearn import linear_model
     number_of_objectives = len(training_dependent[0])
     linear_regression_model = [None for _ in xrange(number_of_objectives)]
-    for objective in [0, 2]:
+
+    for objective in [0, 2, 3]:
         linear_regression_model[objective] = linear_model.LinearRegression()
-        linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
+        if SMOTE is True:
+            from Utilities.SMOTER.smoteR import apply_smote
+            dependent = [td[objective] for td in training_dependent]
+            smote_indep_training, smote_dep_testing = apply_smote(training_independent, dependent)
+            linear_regression_model[objective].fit(smote_indep_training, smote_dep_testing)
+        else:
+            linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
 
     from sklearn.tree import DecisionTreeRegressor
     for objective in [1]:
         linear_regression_model[objective] = DecisionTreeRegressor()
-        linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
+        if SMOTE is True:
+            from Utilities.SMOTER.smoteR import apply_smote
+            dependent = [td[objective] for td in training_dependent]
+            smote_indep_training, smote_dep_testing = apply_smote(training_independent, dependent)
+            linear_regression_model[objective].fit(smote_indep_training, smote_dep_testing)
+        else:
+            linear_regression_model[objective].fit(training_independent, [td[objective] for td in training_dependent])
+
     return linear_regression_model
 
 
@@ -201,7 +245,10 @@ def get_filenames(policy):
     basename = "./Data/"
     from os import listdir
     file_names = [basename + fname for fname in listdir(basename)]
-    functions = [surrogate_generate, surrogate_generate_LR, surrogate_FeatureM]#, surrogate_POMX]
+    functions = [surrogate_POMX, surrogate_generate, surrogate_generate_LR]
+                 # surrogate_FeatureM]#, surrogate_POMX]
+
+    SMOTE = True
 
     for file_name in file_names:
         print
@@ -215,7 +262,6 @@ def get_filenames(policy):
 
                 assert(len(testing_dependent) == len(testing_independent)), "Something is wrong"
 
-
                 surogates = function(training_independent, training_dependent)
 
                 temp_storage.append(validate_data(surogates, testing_independent, testing_dependent))
@@ -226,7 +272,30 @@ def get_filenames(policy):
             number_of_objectives = len(temp_storage[0])
             for o in xrange(number_of_objectives):
                 final_answer.append(round(mean([ts[o] for ts in temp_storage]), 3))
-            print function.__name__ , "\t\t\t : ", final_answer
+            print function.__name__ , "\t\t\t\t : ", final_answer
+
+        if SMOTE is True:
+            for function in functions:
+                temp_storage = []
+                print file_name, " SMOTE ",
+                for repeat in xrange(repeats):
+                    clusters = WHEREDataTransformation(file_name)
+                    training_independent, training_dependent = policy(clusters, file_name)
+                    testing_independent, testing_dependent = get_testing_data(training_independent, file_name)
+
+                    assert(len(testing_dependent) == len(testing_independent)), "Something is wrong"
+
+                    surogates = function(training_independent, training_dependent, SMOTE=True)
+
+                    temp_storage.append(validate_data(surogates, testing_independent, testing_dependent))
+
+                # finding mean
+                from numpy import mean
+                final_answer = []
+                number_of_objectives = len(temp_storage[0])
+                for o in xrange(number_of_objectives):
+                    final_answer.append(round(mean([ts[o] for ts in temp_storage]), 3))
+                print function.__name__ , "\t\t\t : ", final_answer
 
 
 
