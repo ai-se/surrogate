@@ -9,7 +9,7 @@ class Candidate():
         self.class_name = name
 
 
-def class_names(dependent, min_value, max_value, bins=10):
+def class_names(dependent, min_value, max_value, bins=5):
     bin_size = (max_value - min_value)/bins
     return int((dependent - min_value)/bin_size)
 
@@ -45,6 +45,8 @@ def apply_over_sampling(candidates, number_of_points):
         # d2 = euclidean_distance(new_indep, x.independent)
         # new_dep = (d2 * case.dependent + d1 * x.dependent) / (d1 + d2)
 
+        from random import random
+        new_dep = case.dependent + random() * (x.dependent - case.dependent)
 
         new_samples.append(Candidate(new_indep, new_dep, case.class_name))
 

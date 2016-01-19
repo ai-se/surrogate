@@ -18,6 +18,7 @@ class XOMO_all(jmoo_problem):
     "Xomo_all"
 
     def __init__(prob):
+        super(XOMO_all, prob).__init__()
         prob.name = "xomo_all"
         # Should be as xomol.names to maintain order of LOWs and UPs
         names = ["aa", "sced", "cplx", "site", "resl", "acap", "etat", "rely",
@@ -84,7 +85,7 @@ class XOMO_all(jmoo_problem):
         prob.decisions = [jmoo_decision(names[i], bounds[names[i]][0], bounds[names[i]][1]) for i in range(len(names))]
 
         prob.objectives = [jmoo_objective("Effort", True), jmoo_objective("Months", True),
-                           jmoo_objective("Defects", True)]#, jmoo_objective("Risks", True)]
+                           jmoo_objective("Defects", True), jmoo_objective("Risks", True)]
 
     def evaluate(prob, input=None):
         if input:

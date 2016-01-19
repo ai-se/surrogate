@@ -18,6 +18,7 @@ class XOMO_ground(jmoo_problem):
     "Xomo_ground"
 
     def __init__(prob):
+        super(XOMO_ground, prob).__init__()
         prob.name = "xomo_ground"
         # Should be as xomol.names to maintain order of LOWs and UPs
         names = ["aa", "sced", "cplx", "site", "resl", "acap", "etat", "rely",

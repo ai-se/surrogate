@@ -4,6 +4,13 @@ from Problems.POM3.POM3A import POM3A
 from Problems.POM3.POM3B import POM3B
 from Problems.POM3.POM3C import POM3C
 from Problems.POM3.POM3D import POM3D
+
+from Problems.XOMO.XOMO_all import XOMO_all
+from Problems.XOMO.XOMO_flight import XOMO_flight
+from Problems.XOMO.XOMO_ground import XOMO_ground
+from Problems.XOMO.XOMO_osp import XOMO_osp
+from Problems.XOMO.XOMO_osp2 import XOMO_osp2
+
 from Utilities.to_generate_data import generate_data
 
 
@@ -17,11 +24,13 @@ problems = [
     # FeatureTreeModel("eshop", valid_solutions=True),
     # FeatureTreeModel("cellphone", valid_solutions=True),
     # FeatureTreeModel("EIS", valid_solutions=True),
-    FeatureTreeModel("Web_Portal"),
-    FeatureTreeModel("eshop"),
-    FeatureTreeModel("cellphone"),
-    FeatureTreeModel("EIS"),
-    # POM3A(),POM3B(), POM3C(), POM3D()
+    # FeatureTreeModel("Web_Portal"),
+    # FeatureTreeModel("eshop"),
+    # FeatureTreeModel("cellphone"),
+    # FeatureTreeModel("EIS"),
+    # POM3A(),POM3B(), POM3C(), POM3D(),
+    XOMO_all(), XOMO_flight(), XOMO_ground(), XOMO_osp(), XOMO_osp2()
+
 
 ]
 
