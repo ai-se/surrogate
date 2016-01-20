@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b060c064-1e17-4229-833b-290286e1477b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Misc/Result_Parser/parser.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Misc/Result_Parser/result.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/References/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/POM3C.csv" afterPath="$PROJECT_DIR$/Data/POM3C.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomo_all.csv" afterPath="$PROJECT_DIR$/Data/xomo_all.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomo_flight.csv" afterPath="$PROJECT_DIR$/Data/xomo_flight.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomo_ground.csv" afterPath="$PROJECT_DIR$/Data/xomo_ground.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomo_osp.csv" afterPath="$PROJECT_DIR$/Data/xomo_osp.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomoo2.csv" afterPath="$PROJECT_DIR$/Data/xomoo2.csv" />
     </list>
     <ignored path="surrogate.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,13 +71,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Misc/Result_Parser/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23474178">
-              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/References/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.024590164">
+              <caret line="1" column="47" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
           </provider>
         </entry>
       </file>
@@ -183,6 +189,7 @@
         <option value="$PROJECT_DIR$/script.py" />
         <option value="$PROJECT_DIR$/Misc/Result_Parser/result.txt" />
         <option value="$PROJECT_DIR$/Misc/Result_Parser/parser.py" />
+        <option value="$PROJECT_DIR$/References/README.md" />
       </list>
     </option>
   </component>
@@ -250,11 +257,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Misc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Result_Parser" />
+              <option name="myItemId" value="References" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -814,10 +817,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Misc/Result_Parser/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23474178">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/References/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.024590164">
+          <caret line="1" column="47" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>
