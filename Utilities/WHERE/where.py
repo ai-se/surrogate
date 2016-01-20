@@ -40,7 +40,7 @@ def where(data):
       c = aDist(one, two)
       return (a**2-b**2+c**2)/(2*c)
 
-    if R < np.sqrt(N)/2:
+    if R < np.sqrt(N):
       clusters.append(dataset)
     else:
       _ = recurse(sorted(dataset,key=lambda F:proj(F))[:int(R/2)])

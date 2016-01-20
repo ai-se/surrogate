@@ -36,6 +36,82 @@ def modify_files():
         line_prepender(file_name)
 
 
+def poles_point(clusters, filename):
+    def fastmap(points):
+        points = [point.tolist() for point in points]
+        from random import choice
+        random_point = choice(points)
+        from Utilities.SMOTER.smoteR import euclidean_distance
+        east = sorted(points, key=lambda x: euclidean_distance(random_point, x), reverse=True)[0]
+        west = sorted(points, key=lambda x: euclidean_distance(east, x), reverse=True)[0]
+        return [east, west]
+
+
+    from random import choice
+    import pandas as pd
+    df = pd.read_csv(filename)
+    decisions = len([h for h in df.columns if '$<' not in h])
+    objectives = len([h for h in df.columns if '$<' in h])
+    df = df.values.tolist()
+    training_independent = []
+    for points in clusters: training_independent.extend(fastmap(points))
+    # print "Poles: Length of the training independent: ", len(training_independent)
+    full_data = []
+    for ti in training_independent:
+        assert(len(ti) == decisions), "Something is wrong"
+        for element in df:
+            match = True
+            for t, e in zip(ti, element[:decisions]):
+                if t == e: pass
+                else:
+                    match = False
+                    break
+
+            if match is True:
+                full_data.append(element)
+                break
+
+    return [fd[:decisions] for fd in full_data], [fd[decisions:] for fd in full_data]
+
+
+def median_point(clusters, filename):
+    def fastmap(points):
+        points = [point.tolist() for point in points]
+        from random import choice
+        random_point = choice(points)
+        from Utilities.SMOTER.smoteR import euclidean_distance
+        east = sorted(points, key=lambda x: euclidean_distance(random_point, x), reverse=True)[0]
+        west = sorted(points, key=lambda x: euclidean_distance(east, x), reverse=True)[int(len(points)/2)]
+        return [west]
+
+
+    from random import choice
+    import pandas as pd
+    df = pd.read_csv(filename)
+    decisions = len([h for h in df.columns if '$<' not in h])
+    objectives = len([h for h in df.columns if '$<' in h])
+    df = df.values.tolist()
+    training_independent = []
+    for points in clusters: training_independent.extend(fastmap(points))
+    # print "Median: Length of the training independent: ", len(training_independent)
+    full_data = []
+    for ti in training_independent:
+        assert(len(ti) == decisions), "Something is wrong"
+        for element in df:
+            match = True
+            for t, e in zip(ti, element[:decisions]):
+                if t == e: pass
+                else:
+                    match = False
+                    break
+
+            if match is True:
+                full_data.append(element)
+                break
+
+    return [fd[:decisions] for fd in full_data], [fd[decisions:] for fd in full_data]
+
+
 def random_point(clusters, filename):
     from random import choice
     import pandas as pd
@@ -291,7 +367,11 @@ def get_filenames(policy):
 
 
 
-
-get_filenames(random_point)
+where_policies = [random_point, poles_point, median_point]
+# where_policies = [poles_point]
+for policy in where_policies:
+    print policy.__name__
+    print
+    get_filenames(policy)
 # modify_files()
 # build_historgrams(None)

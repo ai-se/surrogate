@@ -24,11 +24,11 @@ problems = [
     # FeatureTreeModel("eshop", valid_solutions=True),
     # FeatureTreeModel("cellphone", valid_solutions=True),
     # FeatureTreeModel("EIS", valid_solutions=True),
-    # FeatureTreeModel("Web_Portal"),
-    # FeatureTreeModel("eshop"),
-    # FeatureTreeModel("cellphone"),
-    # FeatureTreeModel("EIS"),
-    # POM3A(),POM3B(), POM3C(), POM3D(),
+    FeatureTreeModel("Web_Portal"),
+    FeatureTreeModel("eshop"),
+    FeatureTreeModel("cellphone"),
+    FeatureTreeModel("EIS"),
+    POM3A(),POM3B(), POM3C(), POM3D(),
     XOMO_all(), XOMO_flight(), XOMO_ground(), XOMO_osp(), XOMO_osp2()
 
 

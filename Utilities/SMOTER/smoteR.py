@@ -13,6 +13,7 @@ def class_names(dependent, min_value, max_value, bins=5):
     bin_size = (max_value - min_value)/bins
     return int((dependent - min_value)/bin_size)
 
+
 def euclidean_distance(list1, list2):
     assert(len(list1) == len(list2)), "The points don't have the same dimension"
     distance = sum([(i - j) ** 2 for i, j in zip(list1, list2)]) ** 0.5
