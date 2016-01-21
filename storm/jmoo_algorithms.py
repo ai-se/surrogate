@@ -257,6 +257,8 @@ def selTournamentDCD(problem, individuals, configuration, value_to_be_passed):
             individual.evaluate()
             evaluate_count += 1
 
+    # TODO: NSGA2 The evaluation has to be complete before this can proceed
+
     # Format a population data structure usable by DEAP's package
     dIndividuals = deap_format(problem, individuals)
     # import pdb
@@ -300,7 +302,7 @@ def crossoverAndMutation(problem, individuals, configuration):
         for i in range(len(individual.decisionValues)):
             individual.decisionValues[i] = dIndividual[i]
             individual.fitness = None
-
+    # TODO: NSGA2: No Evaluation here
     return individuals,0
 
 def variator(problem, selectees):
@@ -343,11 +345,12 @@ def selSPEA2(problem, population, selectees, configurations):
 
 
 def selNSGA2(problem, population, selectees, configurations):
-    k = configurations["Universal"]["Population_Size"]
+    k = 0
     # Evaluate any new guys
     for individual in population + selectees:
         if not individual.valid:
             individual.evaluate()
+            k += 1
 
     # Format a population Data structure usable by DEAP's package
     dIndividuals = deap_format(problem, population + selectees)
