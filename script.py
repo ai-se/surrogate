@@ -336,7 +336,7 @@ def get_filenames(policy):
     functions = [ surrogate_generate, surrogate_generate_LR]
                  # surrogate_FeatureM]#, surrogate_POMX]
 
-    SMOTE = True
+
 
     for file_name in file_names:
         print
@@ -361,6 +361,28 @@ def get_filenames(policy):
             for o in xrange(number_of_objectives):
                 final_answer.append(round(mean([ts[o] for ts in temp_storage]), 3))
             print function.__name__ , "\t\t\t\t : ", final_answer
+
+        for function in functions:
+            temp_storage = []
+            print file_name,
+            for repeat in xrange(repeats):
+                clusters = WHEREDataTransformation(file_name)
+                training_independent, training_dependent = policy(clusters, file_name)
+                testing_independent, testing_dependent = get_testing_data(training_independent, file_name)
+
+                assert(len(testing_dependent) == len(testing_independent)), "Something is wrong"
+
+                surogates = function(training_independent, training_dependent, SMOTE=True)
+
+                temp_storage.append(validate_data(surogates, testing_independent, testing_dependent))
+
+            # finding mean
+            from numpy import mean
+            final_answer = []
+            number_of_objectives = len(temp_storage[0])
+            for o in xrange(number_of_objectives):
+                final_answer.append(round(mean([ts[o] for ts in temp_storage]), 3))
+            print function.__name__ + "_SMOTE ", "\t\t\t\t : ", final_answer
 
 
 
