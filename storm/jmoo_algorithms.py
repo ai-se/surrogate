@@ -251,9 +251,11 @@ def selTournament(problem, individuals, configuration, value_to_be_passed):
 def selTournamentDCD(problem, individuals, configuration, value_to_be_passed):
 
     # Evaluate any new guys
+    evaluate_count = 0
     for individual in individuals:
         if not individual.valid:
             individual.evaluate()
+            evaluate_count += 1
 
     # Format a population data structure usable by DEAP's package
     dIndividuals = deap_format(problem, individuals)
@@ -270,7 +272,7 @@ def selTournamentDCD(problem, individuals, configuration, value_to_be_passed):
 
     # Update beginning population data structure
     selectedIndices = [i for i,sel in enumerate(selectees)]
-    return [individuals[s] for s in selectedIndices], len(individuals)
+    return [individuals[s] for s in selectedIndices], evaluate_count
 
 #############################################################
 ### MOO Algorithm Adjustors
