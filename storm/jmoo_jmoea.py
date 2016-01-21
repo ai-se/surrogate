@@ -165,7 +165,7 @@ def jmoo_evo(problem, algorithm, configurations, toStop = bstop):
 
         problem.referencePoint = statBox.referencePoint
         selectees, evals = algorithm.selector(problem, population, configurations, values_to_be_passed)
-        print len(selectees), " >> ", evals, ">>"
+        print " >> ", evals, ">>",
         numNewEvals = evals
         old = time()
 
@@ -174,7 +174,7 @@ def jmoo_evo(problem, algorithm, configurations, toStop = bstop):
         # # # # # # # # # #
         selectees, evals = algorithm.adjustor(problem, selectees, configurations)
         numNewEvals += evals
-        print len(selectees), " ++ ", evals, "++"
+        print " ++ ", evals, "++",
 
         
         # # # # # # # # # # #
@@ -182,7 +182,7 @@ def jmoo_evo(problem, algorithm, configurations, toStop = bstop):
         # # # # # # # # # # #
 
         population, evals = algorithm.recombiner(problem, population, selectees, configurations)
-        print len(population), " +-+ ", evals, "+-+"
+        print " +-+ ", evals, "+-+"
 
 
         numNewEvals += evals

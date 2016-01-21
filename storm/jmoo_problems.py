@@ -945,10 +945,11 @@ class dtlz6(jmoo_problem):
    
 
 class dtlz7(jmoo_problem):
-    "DTLZ6"
-    def __init__(prob, numDecs=20, numObjs=2):
+    "DTLZ7"
+    def __init__(prob, numDecs=20, numObjs=2, surrogate=False):
 
         super(dtlz7, prob).__init__()
+        prob.surrogate = surrogate
         prob.name = "DTLZ7"
         names = ["x"+str(i+1) for i in range(numDecs)]
         lows =  [0.0 for i in range(numDecs)]
@@ -956,32 +957,36 @@ class dtlz7(jmoo_problem):
         prob.decisions = [jmoo_decision(names[i], lows[i], ups[i]) for i in range(numDecs)]
         prob.objectives = [jmoo_objective("f" + str(i+1), True) for i in range(numObjs)]
 
-    def evaluate(prob,input = None):
+    def evaluate(prob, input=None, override=False):
 
-        if input:
-            for i,decision in enumerate(prob.decisions):
-                decision.value = input[i]
+        if prob.surrogate is False or override is False:
+            if input:
+                for i,decision in enumerate(prob.decisions):
+                    decision.value = input[i]
 
-        k = 20
-        assert(len(prob.decisions) - len(prob.objectives) + 1 == k)
+            k = 20
+            assert(len(prob.decisions) - len(prob.objectives) + 1 == k)
 
-        x = input[:]
-        g = sum([x[i] for i in xrange(len(prob.decisions) - k, len(prob.decisions))])
-        g = 1 + (9 * g) / k
+            x = input[:]
+            g = sum([x[i] for i in xrange(len(prob.decisions) - k, len(prob.decisions))])
+            g = 1 + (9 * g) / k
 
-        f = x[:len(prob.objectives)-1][:]
-        from math import sin, pi
-        h = sum([(fi/(i + g)) * (1 + sin(3 * pi * fi)) for fi in f])
-        h = len(prob.objectives) - h
+            f = x[:len(prob.objectives)-1][:]
+            from math import sin, pi
+            h = sum([(fi/(i + g)) * (1 + sin(3 * pi * fi)) for fi in f])
+            h = len(prob.objectives) - h
 
-        f.append((1 + g) * h)
+            f.append((1 + g) * h)
 
-        assert(len(f) == len(prob.objectives)), "Something is wrong"
+            assert(len(f) == len(prob.objectives)), "Something is wrong"
 
-        for i in range(0, len(prob.objectives)):
-            prob.objectives[i].value = f[i]
+            for i in range(0, len(prob.objectives)):
+                prob.objectives[i].value = f[i]
 
-        return [objective.value for objective in prob.objectives]
+            return [objective.value for objective in prob.objectives]
+
+        else:
+            prob.add_to_surrogate_store(input)
 
     def evalConstraints(prob,input = None):
         return False

@@ -39,6 +39,7 @@ class jmoo_problem(object):
         prob.objectives = []
         prob.numEvals = 0
         prob.is_binary = False
+        prob.surrogate_store = []
 
     def generateInput(prob):
         "a way to generate decisions for this problem"
@@ -54,7 +55,6 @@ class jmoo_problem(object):
         return temp_value
 
     def generateExtreme(prob):
-
         for decision in prob.decisions:
             decision.value = decision.low
 
@@ -129,5 +129,15 @@ class jmoo_problem(object):
                 else:
                     return False
         return True
+
+    def add_to_surrogate_store(prob, decisions):
+        prob.surrogate_store.append(decisions)
+
+    def execute_surrogates(prob):
+
+        for decision in prob.surrogate_store:
+
+
+
 
 
