@@ -1,1 +1,3 @@
-Vivek
+- script.py is the main script
+- script_baseline would compare the techniques with the baseline (50% of the data)
+- data_script.py would generate random datapoint (no repetation) for various models

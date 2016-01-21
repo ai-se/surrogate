@@ -2,25 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b060c064-1e17-4229-833b-290286e1477b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Misc/Result_Parser/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/EIS.csv" afterPath="$PROJECT_DIR$/Data/EIS.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/POM3A.csv" afterPath="$PROJECT_DIR$/Data/POM3A.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/POM3B.csv" afterPath="$PROJECT_DIR$/Data/POM3B.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/POM3C.csv" afterPath="$PROJECT_DIR$/Data/POM3C.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/POM3D.csv" afterPath="$PROJECT_DIR$/Data/POM3D.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/Web_Portal.csv" afterPath="$PROJECT_DIR$/Data/Web_Portal.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/cellphone.csv" afterPath="$PROJECT_DIR$/Data/cellphone.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/eshop.csv" afterPath="$PROJECT_DIR$/Data/eshop.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomo_all.csv" afterPath="$PROJECT_DIR$/Data/xomo_all.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomo_flight.csv" afterPath="$PROJECT_DIR$/Data/xomo_flight.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomo_ground.csv" afterPath="$PROJECT_DIR$/Data/xomo_ground.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomo_osp.csv" afterPath="$PROJECT_DIR$/Data/xomo_osp.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Data/xomoo2.csv" afterPath="$PROJECT_DIR$/Data/xomoo2.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Misc/Result_Parser/modified_result.txt" afterPath="$PROJECT_DIR$/Misc/Result_Parser/modified_result.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Misc/Result_Parser/result.txt" afterPath="$PROJECT_DIR$/Misc/Result_Parser/result.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Utilities/to_generate_data.py" afterPath="$PROJECT_DIR$/Utilities/to_generate_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_script.py" afterPath="$PROJECT_DIR$/data_script.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script.py" afterPath="$PROJECT_DIR$/script.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="surrogate.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,13 +61,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modified_result.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Misc/Result_Parser/modified_result.txt">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63380283">
-              <caret line="27" column="54" selection-start-line="0" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.04918033">
+              <caret line="2" column="83" selection-start-line="2" selection-start-column="83" selection-end-line="2" selection-end-column="83" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
           </provider>
         </entry>
       </file>
@@ -120,7 +108,7 @@
         <entry file="file://$PROJECT_DIR$/script_baseline.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="119" column="28" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="28" />
+              <caret line="224" column="4" selection-start-line="224" selection-start-column="4" selection-end-line="224" selection-end-column="4" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#788#1281#0" expanded="false" />
@@ -130,16 +118,6 @@
                 <element signature="e#5086#5910#0" expanded="false" />
                 <element signature="e#5943#6313#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="where.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Utilities/WHERE/where.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -202,6 +180,9 @@
         <option value="$PROJECT_DIR$/data_script.py" />
         <option value="$PROJECT_DIR$/script.py" />
         <option value="$PROJECT_DIR$/Misc/Result_Parser/result.txt" />
+        <option value="$PROJECT_DIR$/Misc/Result_Parser/README.md" />
+        <option value="$PROJECT_DIR$/Misc/Result_Parser/modified_result.txt" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -256,38 +237,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="surrogate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="surrogate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="surrogate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Misc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Result_Parser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="surrogate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="surrogate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -560,17 +509,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Utilities/WHERE/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.025817556">
@@ -802,16 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2222223">
-          <caret line="27" column="21" selection-start-line="26" selection-start-column="20" selection-end-line="27" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Misc/Result_Parser/parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -820,19 +748,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script_baseline.py">
+    <entry file="file://$PROJECT_DIR$/Misc/Result_Parser/result.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="119" column="28" selection-start-line="119" selection-start-column="4" selection-end-line="119" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#788#1281#0" expanded="false" />
-            <element signature="e#1326#2137#0" expanded="false" />
-            <element signature="e#2210#3018#0" expanded="false" />
-            <element signature="e#3094#3769#0" expanded="false" />
-            <element signature="e#5086#5910#0" expanded="false" />
-            <element signature="e#5943#6313#0" expanded="false" />
-          </folding>
+          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Misc/Result_Parser/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09836066">
+          <caret line="4" column="61" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Misc/Result_Parser/modified_result.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63380283">
+          <caret line="27" column="54" selection-start-line="0" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -856,20 +795,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Misc/Result_Parser/result.txt">
+    <entry file="file://$PROJECT_DIR$/script_baseline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-          <folding />
+          <caret line="224" column="4" selection-start-line="224" selection-start-column="4" selection-end-line="224" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#788#1281#0" expanded="false" />
+            <element signature="e#1326#2137#0" expanded="false" />
+            <element signature="e#2210#3018#0" expanded="false" />
+            <element signature="e#3094#3769#0" expanded="false" />
+            <element signature="e#5086#5910#0" expanded="false" />
+            <element signature="e#5943#6313#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Misc/Result_Parser/modified_result.txt">
+    <entry file="file://$PROJECT_DIR$/data_script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63380283">
-          <caret line="27" column="54" selection-start-line="0" selection-start-column="0" selection-end-line="208" selection-end-column="0" />
+        <state vertical-scroll-proportion="-3.2222223">
+          <caret line="27" column="21" selection-start-line="26" selection-start-column="20" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.04918033">
+          <caret line="2" column="83" selection-start-line="2" selection-start-column="83" selection-end-line="2" selection-end-column="83" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
   </component>
